@@ -24,6 +24,19 @@ export class PspService {
         if (payload.cardNumber.startsWith('4111')) {
             status = 'PENDING_3DS';
             redirectUrl = `http://psp.local/3ds/${pspTransactionId}`;
+
+            // after transaction creation in 5 sec will call webhook api to update final status
+            setTimeout(async () => {
+                await fetch(payload.callbackUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        transactionId: pspTransactionId,
+                        final_amount: payload.amount,
+                        status: 'SUCCESS', // or FAILED
+                    }),
+                });
+            }, 5000);
         } else if (payload.cardNumber.startsWith('5555')) {
             status = 'SUCCESS';
         } else if (payload.cardNumber.startsWith('4000')) {
