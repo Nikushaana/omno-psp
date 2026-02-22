@@ -1,21 +1,21 @@
 import Fastify from 'fastify';
+import transactionRoutes from './routes/transactions';
 
-const server = Fastify({
-  logger: true
+const app = Fastify({
+    logger: true
 });
 
-server.get('/', async (request, reply) => {
-  return { hello: 'world', status: 'working' };
-});
+// Routes
+app.register(transactionRoutes, { prefix: '/transactions' });
 
 const start = async () => {
-  try {
-    await server.listen({ port: 3000 });
-    console.log('Server running on http://localhost:3000');
-  } catch (err) {
-    server.log.error(err);
-    process.exit(1);
-  }
+    try {
+        await app.listen({ port: 3000 });
+        console.log('Server running on http://localhost:3000');
+    } catch (err) {
+        app.log.error(err);
+        process.exit(1);
+    }
 };
 
 start();
