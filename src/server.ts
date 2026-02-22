@@ -1,5 +1,6 @@
 import Fastify from 'fastify';
 import transactionRoutes from './routes/transactions';
+import pspRoutes from './routes/psp';
 
 const app = Fastify({
     logger: true
@@ -7,6 +8,7 @@ const app = Fastify({
 
 // Routes
 app.register(transactionRoutes, { prefix: '/transactions' });
+app.register(pspRoutes, { prefix: '/psp' });
 
 const start = async () => {
     try {
