@@ -1,6 +1,6 @@
 Node.js Developer Test Task (Omno psp Task)
 
-This is a robust Payment Gateway simulation built with Fastify, TypeScript, and PostgreSQL. It includes a built-in PSP (Payment Service Provider) simulator to handle full payment lifecycles, including 3DS redirects and asynchronous webhooks.
+This is a Payment Gateway simulation built with Fastify, TypeScript, and PostgreSQL. It includes a built-in PSP (Payment Service Provider) simulator to handle full payment lifecycles, including 3DS redirects and asynchronous webhooks.
 
 How to Start the App
 1. Prerequisites
